@@ -1,2 +1,2 @@
 # PROC-JIEBA
-Connecting SAS and Jieba, a Chinese word segmentation library, https://github.com/byronhe/cppjieba
+Call Jieba via SAS, Jieba is a popular Chinese word segmentation library, https://github.com/byronhe/cppjieba
