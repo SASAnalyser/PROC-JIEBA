@@ -30,7 +30,7 @@ JIEBASTMT =                         @PROCINIT
            ,
 
 DICTPATHSTMT =              @STMTPROC     
-             "DICTPATH"            (@LIST(8,5,32767)
+             "DICTPATH"            (@LIST(8,5,260)
                                 	ANYTHING)*
                                             ,
 
