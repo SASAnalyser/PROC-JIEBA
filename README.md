@@ -1,7 +1,7 @@
 # PROC-JIEBA
 Make a SAS procuedure to call Jieba. Jieba is a Chinese word segmentation library, refer to: https://github.com/yanyiwu/cjieba
 
-Build for linux:
+For linux:
 
 1. Install SAS 9.4 Foundation (include unicode support) to /opt/SASHome
 
@@ -40,8 +40,12 @@ cd /opt/SAStoolkit/c/cntl
 ./allmakec
 
 9. Copy /opt/SAStoolkit/c/load/jieba to folder /opt/SASHome/SASFoundation/9.4/sasexe
+ 
 
-10. Run PROC JIEBA:
+For Windows: 
+Download the release package jieba_win_x64.zip, unzip it to C:\Program Files\SASHome\SASFoundation\9.4\core\sasexe
+
+Run PROC JIEBA:
 PROC JIEBA;
 dictpath "/opt/SAStoolkit/cjieba/dict";
 instr "我是蓝翔技工拖拉机学院手扶拖拉机专业的";
@@ -66,6 +70,23 @@ NOTE: PROCEDURE JIEBA used (Total process time):
       real time           6.86 seconds
       cpu time            1.50 seconds
       
+PROC JIEBA options;
+DICTPATH 'path to dict folder';
+VAR 'character variable name list';
+INSTR 'input string for segmentation';
+
+where the options can be:
+
+MAXWORD=number   optional, specifies a numeric parameter to define the length of variable 'word' in output dataset. default is 32, min 2, max 32767.
+
+OUT=dataset     optional, specifies an output data set to store the result of jieba, contains a variable 'word'. the resule will be printed to log if none is specified.
+
+DATA=dataset    optional, specifies an input data set that contains character variable to be used by jieba.
+
+DICTPATH 'path to dict folder'       required.
+
+VAR 'character variable name list'   optional, specify which variable in output dataset shoud be used by jieba.
+
 
 
 
