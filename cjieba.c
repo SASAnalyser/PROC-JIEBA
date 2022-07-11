@@ -1,4 +1,4 @@
-/* $Id: cjieba.c,v 1.0 2021/11/1 analyser.xyz@outlook.com         $  */
+/* $Id: cjieba.c,v 1.0 2021/11/1 sasanalyser                      $  */
 /*-------------------------------------------------------------------*/
 /* NAME:         CJIEBA                                              */
 /* PRODUCT:      SAS/TOOLKIT                                         */
