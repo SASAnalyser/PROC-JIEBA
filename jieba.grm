@@ -1,0 +1,53 @@
+#---------------------------------------------------------------#
+#   NAME:      JIEBA                                                             #
+#   PRODUCT:   SAS/TOOLKIT                                            #
+#   TYPE:      GRAMMAR                                                     #
+#   PURPOSE:   GRAMMAR FILE FOR PROC JIEBA             #
+#   END                                                                                #
+#---------------------------------------------------------------#
+
+%INCLUDE STUBGRM.
+
+PROGRAM    = ANYSTMT ENDJB,
+
+ANYSTMT    = JIEBASTMT
+	|INSTRSTMT
+	|DICTPATHSTMT
+	|VARSTMT	
+,
+
+#-------------STATEMENT DEFINITIONS-------------------#
+
+JIEBASTMT =                         @PROCINIT
+                                      @STMTINIT(8)
+              "JIEBA"            JIEBAOPTS* 
+                                      @STMTEND,
+
+ JIEBAOPTS =
+             ("OUT" "="       DSFIELD @DS(3,2,0,2,2,4,0))
+           | ("DATA" "="     DSFIELD @DS(4,1,1,2,2,3,0))
+           | ("MAXWORD" "="  @PARM(5,1) NUMBER)
+           ,
+
+DICTPATHSTMT =              @STMTPROC     
+             "DICTPATH"            (@LIST(8,5,32767)
+                                	ANYTHING)*
+                                            ,
+
+INSTRSTMT =                      @STMTPROC    
+             "INSTR"                   (@LIST(7,5,32767)
+                                	ANYTHING)*
+                                            ,
+
+VARSTMT  =                    @STMTPROC
+              "VAR"                 (@LIST(6,5) (NAMEX | QS))*
+		           ,
+
+ANYTHING   =  INT | NBR | NAMEX | VLITERAL | FMT| COMPOUND | QS | SPECIAL ,
+
+# note that hash mark and semicolon don't appear
+
+SPECIAL    = "!" | "@" | "$" | "%" | "^" | "&" | "*" |
+             "(" | ")" | "-" | "+" | "=" | "|" | ":" |
+             "<" | ">" | "?" | "/"
+           .
